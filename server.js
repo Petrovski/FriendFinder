@@ -10,5 +10,5 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.listen(PORT, function () {
-    console.log("Server listening on: " + PORT);
+    console.log("Server listening on PORT: " + PORT);
 })
