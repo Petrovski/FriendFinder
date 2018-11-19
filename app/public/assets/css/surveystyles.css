@@ -1,0 +1,78 @@
+body {
+    background-color: black;
+    color: white;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    font-family: Dosis;
+}
+
+html {
+  margin: 0;
+  padding: 0;
+}
+
+.jumbotron {
+    background: transparent;
+    float: left;
+    width: 80%;
+    margin-left: 0;
+}
+
+#wolf {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    background-color: transparent;
+    z-index: -1;
+}
+
+#wolfimg {
+    height: 330px;
+    width: 390px;
+    right: 0;
+    bottom: 0;
+    position: fixed;
+    z-index: -1;
+}
+
+.footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #efefef;
+  text-align: center;
+}
+
+.form-group {
+    text-align: center;
+}
+
+.questionsText {
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+}
+
+input#inputName.form-control {
+    width: 500px;
+}
+
+input#inputPhoto.form-control {
+    width: 500px;
+}
+
+button.btn.btn-lg.btn-primary {
+    margin-top: 30px;
+    width: 170px;
+    height: 70px;
+    font-size: 30px;
+}
+
