@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="assets/css/surveystyles.css">
+    <link rel="stylesheet" href="./assets/css/surveystyles.css">
     <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
 
 </head>
@@ -24,7 +24,10 @@
             <h2 class="text-center">Answer these following questions to find your matching wolf pack!</h2>
             <br>
 
+            <hr>
+
             <div class="container">
+
                 <form action="">
 
                     <div class="form-group">
@@ -159,37 +162,152 @@
                     </div>
 
                     <div class="text-center">
-                        <a href="/tables"><button id="submit" class="btn btn-lg btn-primary"><span class="fa fa-paw"></span> Submit</button></a>
+                        <button id="submit" class="btn btn-lg btn-primary"><span class="fa fa-paw"></span> Submit</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 
+    <hr>
+
     <div id="wolf">
         <img id ="wolfimg" src="https://thewallpaper.co/wp-content/uploads/2016/03/abstract-wolf-art-android-wallpapers-cool-artworks-download-images-1805x1128-768x480.jpg" alt="">
     </div>
 
-    <footer class="footer">
+
+    <!-- <footer class="footer">
         <div class="container">
-              <p><a href="/api/tables">API Table Link</a> | <a href="/api/waitlist">API Wait List</a>
+            <p><a href="/api/tables">API Table Link</a> | <a href="/api/waitlist">API Wait List</a>
         </div>
-    </footer>
+    </footer> -->
+
+
+    <!-- Modal
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog">
+            
+                    <!-- Modal content-->
+                    <div class="modal-content mainModal">
+                        <div class="modal-header">
+                            <h1 class="modal-title resultName" id="packName"></h1>
+                        </div>
+                        <div class="modal-body" id="packImage">
+            
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
 
 
     <script>
 
-        $("#submit").on("click", function(){
+        $("#submit").on("click", function (event) {
 
             event.preventDefault();
+            
+            var formValidation = true;
+            
+            if ($("#nameInput").val().trim() === "" || $("#imageInput").val().trim() === "") {
+                formValidation = false;
+            }
 
-            console.log("Hello and thank you for clicking me!!");
+            for (let i = 1; i < 10; i++) {
+                if ($("#question" + i).val() === "Please select an answer") {
+                    formValidation = false;
+                }
+            }
+            
+            if (formValidation === true) {
+                var user = {
+                    "name": $("#nameInput").val().trim(),
+                    "image": $("#imageInput").val().trim(),
+                    "scores": [
+                        $("#question1").val().trim(), 
+                        $("#question2").val().trim(), 
+                        $("#question3").val().trim(), 
+                        $("#question4").val().trim(), 
+                        $("#question5").val().trim(), 
+                        $("#question6").val().trim(), 
+                        $("#question7").val().trim(), 
+                        $("#question8").val().trim(), 
+                        $("#question9").val().trim(), 
+                        $("#question10").val().trim()]
+                }
 
-        })
+                $.ajax({ 
+                    url: "/api/friends", 
+                    method: "GET" 
+                }).then(function (packData) {
+                    
+                        var newArray = [];
+                        var resultsArray = [];
+                   
+                        function compareResults(res) {
+                            for (let i = 0; i < packData[0].scores.length; i++) {
+                                var differenceArray = user.scores[i] - packData[res].scores[i];
+                                newArray.push(Math.abs(differenceArray));
+                            }
 
-    
-    
+                            function grabSum(total, num) {
+                                return total + num;
+                            }
+
+                            var sumArray = newArray.reduce(grabSum);
+                            resultsArray.push(arrayTotal)
+                            newArray = [];
+                        }
+
+                        for (let p = 0; p < packData.length; p++) {
+                            compareResults(p);
+                        }
+
+                        var lowestResults = Math.min(...resultsArray)
+
+                        var chosenResult = resultsArray.indexOf(lowestResults)
+
+                        $("#packName").text("Your Mathing Pack is: " + friendsData[chosenResult].name)
+                        $("#packImage").html("<img class='resultImage' src='" + friendsData[chosenResult].image + "' style='width:350px; height:350px;' alt='Matching Pack Picture'>")
+                        // trigger modal to pop up
+                        $("#myModal").modal("show");
+
+                    }).then( () => {
+                        var currentURL = window.location.origin;
+                        $.post(currentURL + "/api/friends", user, function (data) {
+                            $("#nameInput").val("");
+                            $("#imageInput").val("");
+                        });
+                    });
+                } else {
+                    alert("Fill out all the fields before submitting, otherwise we can't find your matching pack!")
+                }
+        });
     
     </script>
 
