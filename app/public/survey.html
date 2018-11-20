@@ -8,6 +8,7 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="assets/css/surveystyles.css">
     <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
 
@@ -18,9 +19,9 @@
     <div class="container">
 
         <div class="jumbotron jumbotron-fluid">
-            <h1 class="text-center"><span class="fa fa-paw"></span>  Wolf Pack Survey  <span class="fa fa-paw"></span></h1>
+            <h1 class="text-center"> Wolf Pack Survey</h1>
             <hr>
-            <h2 class="text-center">Answer these following questions to find your wolf pack!</h2>
+            <h2 class="text-center">Answer these following questions to find your matching wolf pack!</h2>
             <br>
 
             <div class="container">
@@ -28,13 +29,13 @@
 
                     <div class="form-group">
                         <label for="exampleFormControlInput1">Name (required)</label>
-                        <input type="text" class="form-control" id="inputName" required="">
+                        <input type="text" class="form-control" id="nameInput" required="">
                     </div>
 
                     
                     <div class="form-group">
-                        <label for="exampleFormControlInput1">Link to Photo (required)</label>
-                        <input type="text" class="form-control" id="inputPhoto" required="">
+                        <label for="exampleFormControlInput1">Link to Image (required)</label>
+                        <input type="text" class="form-control" id="imageInput" required="">
                     </div>
 
                     <p class="questionsText">Generally speaking, you rely more on your experience than your imagination</p>
@@ -158,7 +159,7 @@
                     </div>
 
                     <div class="text-center">
-                        <a href="/tables"><button class="btn btn-lg btn-primary"><span class="fa fa-list-alt"></span> Submit</button></a>
+                        <a href="/tables"><button id="submit" class="btn btn-lg btn-primary"><span class="fa fa-paw"></span> Submit</button></a>
                     </div>
                 </form>
             </div>
@@ -174,6 +175,23 @@
               <p><a href="/api/tables">API Table Link</a> | <a href="/api/waitlist">API Wait List</a>
         </div>
     </footer>
+
+
+
+    <script>
+
+        $("#submit").on("click", function(){
+
+            event.preventDefault();
+
+            console.log("Hello and thank you for clicking me!!");
+
+        })
+
+    
+    
+    
+    </script>
 
 </body>
 

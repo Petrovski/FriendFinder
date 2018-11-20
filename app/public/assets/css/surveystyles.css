@@ -12,6 +12,10 @@ html {
   padding: 0;
 }
 
+h1 {
+    font-size: 70px;
+}
+
 .jumbotron {
     background: transparent;
     float: left;
@@ -61,12 +65,12 @@ form {
     align-items: center;
 }
 
-input#inputName.form-control {
-    width: 500px;
+input#nameInput.form-control {
+    width: 250px;
 }
 
-input#inputPhoto.form-control {
-    width: 500px;
+input#imageInput.form-control {
+    width: 400px;
 }
 
 button.btn.btn-lg.btn-primary {
