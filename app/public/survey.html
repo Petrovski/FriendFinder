@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Survey Page</title>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
     <link rel="stylesheet" href="css/surveystyles.css">
+    <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
 
 </head>
 
@@ -182,7 +182,7 @@
     </footer> -->
 
 
-    <!-- Modal
+    <!-- Modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -201,7 +201,7 @@
                 </div>
             </div>
         </div>
-    </div> -->
+    </div>
 
 
     <script>
@@ -258,7 +258,7 @@
                             }
 
                             var sumArray = newArray.reduce(grabSum);
-                            resultsArray.push(arrayTotal)
+                            resultsArray.push(sumArray)
                             newArray = [];
                         }
 
@@ -267,12 +267,10 @@
                         }
 
                         var lowestResults = Math.min(...resultsArray)
-
                         var chosenResult = resultsArray.indexOf(lowestResults)
 
-                        $("#packName").text("Your Mathing Pack is: " + friendsData[chosenResult].name)
-                        $("#packImage").html("<img class='resultImage' src='" + friendsData[chosenResult].image + "' style='width:350px; height:350px;' alt='Matching Pack Picture'>")
-                        // trigger modal to pop up
+                        $("#packName").text("Your Mathing Pack is: " + packData[chosenResult].name)
+                        $("#packImage").html("<img class='resultImage' src='" + packData[chosenResult].image + "' style='width:350px; height:350px;' alt='Matching Pack Picture'>")
                         $("#myModal").modal("show");
 
                     }).then( () => {
