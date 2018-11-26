@@ -7,4 +7,6 @@ PackFinder uses nodeJS and express.js to run its server side processsing and req
 
 Here is a link to the deployed project on heroku:
 
+https://pure-escarpment-48703.herokuapp.com/
+
 
